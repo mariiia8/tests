@@ -3,7 +3,6 @@ const { test, expect } = require('@playwright/test');
 test('todo test with multiple URL options', async ({ page }) => {
   test.setTimeout(40000);
 
-  // Список рабочих URL TodoMVC
   const urls = [
     'https://todomvc.com/examples/vanillajs/',
     'https://todomvc.com/examples/react/',
@@ -18,7 +17,6 @@ test('todo test with multiple URL options', async ({ page }) => {
       console.log(`Пробуем URL: ${url}`);
       await page.goto(url, { timeout: 15000, waitUntil: 'domcontentloaded' });
       
-      // Пробуем найти поле ввода
       await page.waitForSelector('.new-todo', { timeout: 5000 });
       console.log(`Успешно загружено: ${url}`);
       success = true;
@@ -34,7 +32,6 @@ test('todo test with multiple URL options', async ({ page }) => {
     throw new Error('Ни один из URL TodoMVC не сработал');
   }
 
-  // Остальная логика теста
   const input = page.locator('.new-todo');
   
   await input.fill('Task 1');
